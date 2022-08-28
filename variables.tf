@@ -12,7 +12,7 @@ variable "cluster_version" {
 
 variable "node_instance_types" {
   default = [
-    "t2.small"
+    "t2.micro"
   ]
 }
 
