@@ -3,5 +3,5 @@ output "eks_cluster" {
 }
 
 output "master_cluster_sg" {
-  value = aws_security_group.master_cluster_sg
+  value = aws_security_group.cluster_sg
 }

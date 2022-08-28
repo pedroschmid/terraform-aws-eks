@@ -5,8 +5,8 @@ module "network" {
   cluster_name = var.cluster_name
 }
 
-module "master" {
-  source = "./modules/master"
+module "cluster" {
+  source = "./modules/cluster"
 
   aws_region      = var.aws_region
   cluster_name    = var.cluster_name
