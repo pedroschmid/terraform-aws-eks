@@ -1,4 +1,4 @@
-resource "aws_security_group" "master_security_group" {
+resource "aws_security_group" "master_cluster_sg" {
   vpc_id = var.cluster_vpc.id
 
   name = format("%s-master-security-group", var.cluster_name)
@@ -17,7 +17,7 @@ resource "aws_security_group_rule" "master_ingress_https" {
   cidr_blocks       = ["0.0.0.0/0"] // Should be corporative range or bastion range
   ipv6_cidr_blocks  = ["::/0"]
   prefix_list_ids   = []
-  security_group_id = aws_security_group.master_security_group.id
+  security_group_id = aws_security_group.master_cluster_sg.id
 }
 
 resource "aws_security_group_rule" "master_egress_default" {
@@ -29,5 +29,5 @@ resource "aws_security_group_rule" "master_egress_default" {
   cidr_blocks       = ["0.0.0.0/0"]
   ipv6_cidr_blocks  = ["::/0"]
   prefix_list_ids   = []
-  security_group_id = aws_security_group.master_security_group.id
+  security_group_id = aws_security_group.master_cluster_sg.id
 }
