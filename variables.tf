@@ -10,7 +10,7 @@ variable "cluster_version" {
   default = "1.23"
 }
 
-variable "node_instance_sizes" {
+variable "node_instance_types" {
   default = [
     "t2.small"
   ]

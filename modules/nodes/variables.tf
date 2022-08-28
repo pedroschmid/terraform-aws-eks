@@ -14,6 +14,6 @@ variable "eks_cluster" {}
 
 variable "eks_cluster_sg" {}
 
-variable "node_instance_sizes" {}
+variable "node_instance_types" {}
 
 variable "auto_scale_options" {}
