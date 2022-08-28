@@ -18,8 +18,8 @@ variable "node_instance_types" {
 
 variable "auto_scale_options" {
   default = {
-    min     = 2
-    max     = 10
-    desired = 2
+    desired_size = 2
+    min_size     = 2
+    max_size     = 10
   }
 }
