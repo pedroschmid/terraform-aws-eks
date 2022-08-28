@@ -1,0 +1,4 @@
+bucket  = ""
+key     = ""
+region  = ""
+profile = ""
