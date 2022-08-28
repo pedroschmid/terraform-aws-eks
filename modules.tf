@@ -1,6 +1,18 @@
 module "network" {
   source = "./modules/network"
 
-  cluster_name = var.cluster_name
   aws_region   = var.aws_region
+  cluster_name = var.cluster_name
+}
+
+module "master" {
+  source = "./modules/master"
+
+  aws_region      = var.aws_region
+  cluster_name    = var.cluster_name
+  cluster_version = var.cluster_version
+
+  cluster_vpc       = module.network.vpc
+  private_subnet_1a = module.network.private_subnet_1a
+  private_subnet_1b = module.network.private_subnet_1b
 }
