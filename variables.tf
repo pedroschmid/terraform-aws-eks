@@ -9,3 +9,17 @@ variable "cluster_name" {
 variable "cluster_version" {
   default = "1.23"
 }
+
+variable "node_instance_sizes" {
+  default = [
+    "t2.small"
+  ]
+}
+
+variable "auto_scale_options" {
+  default = {
+    min     = 2
+    max     = 10
+    desired = 2
+  }
+}
