@@ -10,7 +10,7 @@ resource "aws_route_table" "igw_route_table" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    "Name" = format("%s-igw-route-table", var.cluster_name)
+    "Name" = format("%s-internet-gateway-route-table", var.cluster_name)
   }
 }
 
