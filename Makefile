@@ -1,4 +1,6 @@
-aws-vault-profile=terraform
+# Variables
+aws_vault_profile=terraform
+backend_file=backend.hcl
 
 # AWS CLI
 sync-eks:
@@ -6,12 +8,14 @@ sync-eks:
 
 # Terraform
 init:
-	terraform init
+	terraform init -backend=true -backend-config=$(backend_file)
+plan:
+	terraform plan
 validate:
 	terraform validate
 apply:
-	aws-vault exec $(aws-vault-profile) --no-session -- terraform apply
+	aws-vault exec $(aws_vault_profile) --no-session -- terraform apply
 destroy:
-	aws-vault exec $(aws-vault-profile) --no-session -- terraform destroy
+	aws-vault exec $(aws_vault_profile) --no-session -- terraform destroy
 fmt:
 	terraform fmt --recursive
