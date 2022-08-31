@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_metric_alarm" "cloudwatch_metric_alarm_cpu_up" {
 
-  alarm_name = format("%s-autoscaling-nodes-cpu-high", var.cluster_name)
+  alarm_name = format("%s-nodes-cpu-high", var.cluster_name)
 
   comparison_operator = "GreaterThanOrEqualToThreshold"
   metric_name         = "CPUUtilization"
@@ -21,7 +21,7 @@ resource "aws_cloudwatch_metric_alarm" "cloudwatch_metric_alarm_cpu_up" {
 
 resource "aws_cloudwatch_metric_alarm" "cloudwatch_metric_alarm_cpu_down" {
 
-  alarm_name = format("%s-autoscaling-nodes-cpu-low", var.cluster_name)
+  alarm_name = format("%s-nodes-cpu-low", var.cluster_name)
 
   comparison_operator = "LessThanOrEqualToThreshold"
   metric_name         = "CPUUtilization"
