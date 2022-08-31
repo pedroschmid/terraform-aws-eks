@@ -1,21 +1,25 @@
 # Variables
-aws_vault_profile=terraform
-backend_file=backend.hcl
+AWS_REGION=us-east-1
+AWS_EKS_CLUSTER_NAME=k8s
+AWS_VAULT_PROFILE=terraform
+BACKEND_FILE_PATH=backend.hcl
 
-# AWS CLI
-sync-eks:
-	aws eks --region us-east-1 update-kubeconfig --name k8s
+# AWS 
+login:
+	aws-vault login $(AWS_VAULT_PROFILE)
+eks-sync:
+	aws-vault exec $(AWS_VAULT_PROFILE) -- aws eks --region $(AWS_REGION) update-kubeconfig --name $(AWS_EKS_CLUSTER_NAME)
 
 # Terraform
 init:
-	terraform init -backend=true -backend-config=$(backend_file)
+	aws-vault exec $(AWS_VAULT_PROFILE) --no-session -- terraform init -backend=true -backend-config=$(BACKEND_FILE_PATH)
 plan:
-	terraform plan
+	aws-vault exec $(AWS_VAULT_PROFILE) --no-session -- terraform plan
 validate:
 	terraform validate
 apply:
-	aws-vault exec $(aws_vault_profile) --no-session -- terraform apply
+	aws-vault exec $(AWS_VAULT_PROFILE) --no-session -- terraform apply
 destroy:
-	aws-vault exec $(aws_vault_profile) --no-session -- terraform destroy
+	aws-vault exec $(AWS_VAULT_PROFILE) --no-session -- terraform destroy
 fmt:
 	terraform fmt --recursive
